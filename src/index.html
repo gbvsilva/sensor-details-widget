@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="lib/js/material.min.js"></script>
+        <link rel="stylesheet" href="lib/css/material.min.css"/>
+
+        <!-- moment -->
+        <script src="lib/js/moment-with-locales.min.js"></script>
+        <script src="lib/js/moment-timezone-with-data-10-year-range.min.js"></script>
+
+        <!-- D3 -->
+        <script src="lib/js/d3.v5.min.js" charset="utf-8"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+        <script src="lib/js/gcharts_loader.js"></script>
+
+        <title>sensor-details widget</title>
+    </head>
+    <body>
+
+        <div class="mdl-layout__header-row header-row">
+            <div class="header-title">
+                <!-- Title -->
+                <span class="mdl-layout-title" id="title"></span>
+                <!-- Subtitle -->
+                <span class="layout-subtitle" id="subtitle"></span>
+            </div>
+        </div>
+        <div id="dynamicContainer" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a id="info_panel_button" href="#info-panel" class="mdl-tabs__tab is-active">Info</a>
+                <a href="#details-panel" class="mdl-tabs__tab">Detalhes</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="info-panel">
+                <div class="page-content">
+                    <section class="sensor-container " id="sensor-info">
+                        <div id="sensor_mainBox" class="mainBox">
+                            <div class="infoDeviceImage sensor" id="deviceImage_sensor"></div>
+                            <div class="infoGaugeCharts sensor">
+                                <div class="infoGaugeCharts sensor" id="tensaoGaugeChart"></div>
+                                <div class="infoGaugeCharts sensor" id="potenciaGaugeChart"></div>
+                                <div class="infoGaugeCharts sensor" id="correnteGaugeChart"></div>
+                            </div>
+                            <div class="basicInfoBox">
+                                <div class="mainInfoBox">
+                                    <div class="infoTitle">Última atualização:</div>
+                                    <div class="infoValue orangeText" id="sensor_updateDate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="mdl-tabs__panel" id="details-panel">
+                <div class="page-content">
+                    <!-- Details Smart Sensor -->
+                    <div class="sensor-container hidden">
+                        <div class="detailTable" id="sensorDetailsTable">
+                            <div class="myRow">
+                                <div class="cell cell-title">ID</div>
+                                <div class="cell" id="sensor_id"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Tipo</div>
+                                <div class="cell" id="sensor_tipo"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Corrente</div>
+                                <div class="cell" id="sensor_corrente"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Fator de Potência</div>
+                                <div class="cell" id="sensor_fator_potencia"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Fator de Potência Total</div>
+                                <div class="cell" id="sensor_fator_potenciaT"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Aparente</div>
+                                <div class="cell" id="sensor_potencia_aparente"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Aparente Total</div>
+                                <div class="cell" id="sensor_potencia_aparenteT"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Ativa</div>
+                                <div class="cell" id="sensor_potencia_ativa"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Ativa Total</div>
+                                <div class="cell" id="sensor_potencia_ativaT"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Reativa</div>
+                                <div class="cell" id="sensor_potencia_reativa"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Potência Reativa Total</div>
+                                <div class="cell" id="sensor_potencia_reativaT"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Tensão</div>
+                                <div class="cell" id="sensor_tensao"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Tensão Total</div>
+                                <div class="cell" id="sensor_tensaoT"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Latitude</div>
+                                <div class="cell" id="sensor_latitude"></div>
+                            </div>
+                            <div class="myRow">
+                                <div class="cell cell-title">Longitude</div>
+                                <div class="cell" id="sensor_longitude"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/SensorDetails.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

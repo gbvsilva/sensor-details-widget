@@ -1,0 +1,343 @@
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #4A4A4A;
+    background-color: #f9f9f9;
+    height: inherit;
+}
+
+.detailTable {
+    border-top: 1px rgba(40,60,67,0.09) solid;
+    border-left: 1px rgba(40,60,67,0.09) solid;
+    width: 100%;
+    display: table;
+}
+
+.myRow {
+    display: table-row;
+}
+.cell {
+    padding: 8px;
+    display: table-cell;
+    border-right: 1px rgba(40,60,67,0.09) solid;
+    border-bottom: 1px rgba(40,60,67,0.09) solid;
+    font-size: 12px;
+}
+
+.cell-title {
+    min-width: 120px;
+    font-weight: bold;
+    background: #f9f9f9;
+    color: #8F8E8F;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+/* New Style*/
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.capelonSlider circle {
+    stroke: transparent;
+    fill: cornflowerblue;
+}
+
+i#deviceIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+    border: 1px rgba(40,60,67,0.09) solid;
+    padding: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+    background: #E1FAC7;
+}
+
+.cabinetIcon {
+    padding: 10px;
+    background: #cdefd9;
+    color: #016501;
+}
+
+i#deviceIcon.cabinIcon {
+    background: #cdefd9;
+    color: #016501;
+}
+
+i#deviceIcon.fa-stack.fa-1x.cabinIcon {
+    padding: 0;
+}
+
+i#deviceIcon.lightIcon {
+    color: #6c6c6c;
+    background: #c8efb8;
+}
+
+.mdl-tabs__tab.is-active {
+    font-weight: bold;
+    color: inherit !important;
+}
+
+.mdl-tabs__tab {
+    text-transform: none;
+    font-size: 12px;
+    height: 41px;
+}
+
+.mdl-tabs__tab-bar {
+    height: 41px;
+}
+
+#eventAlertTabIcon {
+    padding-left: 10px;
+    color: #d84526;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+#eventAlertTabIcon.on{
+    opacity: 1;
+}
+
+.eventAlert {
+    font-size: 32px;
+    width: 36px;
+}
+
+/* event colors*/
+.daliCommError {
+    /*color: #dc4d59;*/
+}
+
+.daliGearError {
+    /*color: #0c5460;*/
+}
+
+.daliLampError {
+    /*color: #ecb600;*/
+}
+
+.daliDimmingError {
+    /*color: #3d3d3d;*/
+}
+
+.unknownP {
+    /*color: #818182;*/
+}
+
+.list-item-alarm {
+    font-size: 12px;
+    padding-left: 17px;
+}
+
+.list-item-alarm strong {
+    padding-left: 5px;
+}
+
+.header-title {
+    display: flex;
+    flex-flow: column;
+    padding-left: 5px;
+    margin-top: 25px;
+}
+
+.header-row {
+    padding-left: 10px;
+    height: 35px;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.inlineTitle {
+    padding-left: 15px;
+}
+
+#subtitle {
+    font-size: 12px;
+}
+
+.mdl-tabs {
+    display: block;
+    width: 100%;
+    height: calc(100% - 39px);
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
+    background: #07557b;
+    height: 3px;
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__panel {
+    background: #fdfdfd;
+    overflow-x: auto;
+    height: inherit;
+}
+
+.page-content {
+    padding: 20px;
+}
+
+/* Common section */
+.mainBox {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+.infoDeviceImage {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.infoGaugeCharts {
+    width: 400px; 
+    height: 120px;
+}
+
+/* #tensaoGaugeChart {
+
+}
+
+#potenciaGaugeChart {
+
+}
+
+#correnteGaugeChart {
+
+} */
+
+.infoDeviceImage.lighter {
+    background-image: url(../images/LighterImage.png);
+    /*background-image: url(../images/street-light.svg);*/
+}
+
+.infoDeviceImage.group {
+    background-image: url(../images/StreetlightGroup.svg);
+}
+
+.infoDeviceImage.cabinet {
+    background-image: url(../images/cabinet_v3.svg);
+}
+
+.infoDeviceImage.parking {
+    background-image: url(../images/parking-sign.svg);
+    width: 100px;
+}
+
+.infoDeviceImage.waste {
+    background-image: url(../images/waste/wastebin_unknown.png);
+    height: 100px;
+    width: 100px;
+}
+
+.infoDeviceImage.waste.full {
+    background-image: url(../images/waste/wastebin_full.png);
+    height: 100px;
+    width: 100px;
+}
+
+.infoDeviceImage.waste.low {
+    background-image: url(../images/waste/wastebin_low.png);
+    height: 100px;
+    width: 100px;
+}
+
+.infoDeviceImage.waste.medium {
+    background-image: url(../images/waste/wastebin_medium.png);
+    height: 100px;
+    width: 100px;
+}
+
+.infoDeviceImage.lightSensor {
+    height: 200px;
+    width: 200px;
+}
+.basicInfoBox {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mainInfoBox {
+    line-height: 20px;
+    padding-left: 10px;
+}
+
+.greenText {
+    color: #417505;
+}
+
+.yellowText {
+    color: #b9bc04;
+}
+
+.redText {
+    color: #D0021B;
+}
+
+.darkOrangeText {
+    color: #F5A623;
+}
+
+.blueText {
+    color: #4A90E2;
+}
+
+.lightOn {
+    color: #DAD135;
+}
+.lightOff {
+    color: #92958d;
+}
+
+.lightLow {
+    color: #f1ad28;
+}
+
+.lightBoot {
+    color: #30c0ff;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+.orangeText {
+    color: #F5A623;
+}
+
+.infoTitle {
+    display: inline-block;
+    color: #8F8E8F;
+    font-weight: bold;
+}
+
+.infoValue {
+    display: inline-block;
+}

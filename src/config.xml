@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="REGINA-Lab" name="sensor-details" version="0.1.0">
+
+    <details>
+        <title>Sensor Details Widget</title>
+        <homepage>https://github.com/gbvsilva/sensor-details-widget</homepage>
+        <authors>Graco Silva</authors>
+        <email>graco.babeuf18@gmail.com</email>
+        <image>images/regina_logo.png</image> <!-- 170x80 -->
+        <smartphoneimage></smartphoneimage>
+        <description>Basic widget to show all information about the dashboard sensors</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/userguide.md</doc>
+        <license>MIT</license>
+        <issuetracker>https://github.com/gbvsilva/sensor-details-widget/issues</issuetracker>
+    </details>
+
+    <requirements>
+        <feature name="NGSI"/>
+        <feature name="DashboardManagement"/>
+    </requirements>
+
+    <preferences>
+        <preference name="ngsi_server" label="ngsi_server" description="" type="text" default="http://orion.lab.fiware.org:1026" />
+        <preference name="ngsi_proxy" label="ngsi_proxy" type="text" description="" default="https://ngsiproxy.lab.fiware.org" />
+        <preference name="ngsi_tenant" label="ngsi_tenant" type="text" description="" default="openiot" />
+        <preference name="ngsi_service_path" label="ngsi_service_path" description="" type="text" default="/" />
+        <preference name="timezone" label="Timezone" type="text" description="" default="America/Fortaleza" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="status_data" type="text" label="Incoming status data" description="Incoming data with current state of a sensor element" actionlabel="" friendcode="status" />
+    </wiring>
+
+    <contents src="index.html" cacheable="true" />
+    <rendering height="300px" width="30%"/>
+
+</widget>
