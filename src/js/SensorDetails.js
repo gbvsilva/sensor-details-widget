@@ -22,6 +22,7 @@ var SensorDetails = (function () {
 
     var SensorDetails = function SensorDetails() {
         timezone = MashupPlatform.prefs.get('timezone');
+        moment.locale('pt-br');
 
         // Containers
         var sensor_containers = document.getElementsByClassName("sensor-container");
@@ -29,9 +30,6 @@ var SensorDetails = (function () {
 
         // Sensor elements
         var infoDeviceImage = document.getElementById('deviceImage_sensor');
-        var tensaoGaugeChart = document.getElementById('tensaoGaugeChart');
-        var potenciaGaugeChart = document.getElementById('potenciaGaugeChart');
-        var correnteGaugeChart = document.getElementById('correnteGaugeChart');
         var sensor_id = document.getElementById('sensor_id');
         var sensor_update_date = document.getElementById('sensor_updateDate');
         var sensor_tipo = document.getElementById('sensor_tipo');
@@ -48,21 +46,79 @@ var SensorDetails = (function () {
         var sensor_tensaoT = document.getElementById('sensor_tensaoT');
         var sensor_latitude = document.getElementById('sensor_latitude');
         var sensor_longitude = document.getElementById('sensor_longitude');
+        
+        var tensaoGaugeChart, potenciaGaugeChart, correnteGaugeChart;
+        var data1, data2, data3;
+        var options1, options2, options3;
 
         google.charts.load('current', {'packages':['gauge']});
-        // google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawGauges);
 
-
-        var drawGauge = function drawGauge(chart, label, value, id, options) {    
-
-            var data = google.visualization.arrayToDataTable([
+        function drawGauges() {    
+            tensaoGaugeChart = new google.visualization.Gauge(document.getElementById('tensaoGaugeChart'));
+            data1 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
-              [label, value]
+              ['Tensão', 0]
             ]);
+            options1 = {
+              width: 100, height: 100,
+              min: 0, max: 300,
+              redFrom: 0, redTo: 150,
+              yellowFrom:150, yellowTo: 175,
+              greenFrom: 175, greenTo: 250,
+              minorTicks: 5
+            };
+            potenciaGaugeChart = new google.visualization.Gauge(document.getElementById('potenciaGaugeChart'));
+            data2 = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Potência', 0]
+            ]);
+            options2 = {
+              width: 100, height: 100,
+              min: 0, max: 45000,
+              greenFrom: 0, greenTo: 40000,
+              yellowFrom: 40000, yellowTo: 42500,
+              redFrom: 42500, redTo: 45000,
+              minorTicks: 5
+            };
+            correnteGaugeChart = new google.visualization.Gauge(document.getElementById('correnteGaugeChart'));
+            data3 = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Corrente', 0]
+            ]);
+            options3 = {
+                width: 100, height: 100,
+                min: 0, max: 150,
+                greenFrom: 0, greenTo: 140,
+                yellowFrom: 140, yellowTo: 145,
+                redFrom: 145, redTo: 150,
+                minorTicks: 5
+            }
 
-            chart = new google.visualization.Gauge(document.getElementById(id));
+            tensaoGaugeChart.draw(data1, options1);
+            potenciaGaugeChart.draw(data2, options2);
+            correnteGaugeChart.draw(data3, options3);
+            /* setInterval(function() {
+                data1.setValue(0, 1, t);
+                tensaoGaugeChart.draw(data1, options1);
+            }, 1000);
+            setInterval(function() {
+                data2.setValue(0, 1, w);
+                potenciaGaugeChart.draw(data2, options2);
+            }, 1000);
+            setInterval(function() {
+                data3.setValue(0, 1, a);
+                correnteGaugeChart.draw(data3, options3);
+            }, 1000); */
+        }
 
-            chart.draw(data, options);
+        var updateGauges = function updateGauges(t, w, a) {
+            data1.setValue(0, 1, t);
+            data2.setValue(0, 1, w);
+            data3.setValue(0, 1, a);
+            tensaoGaugeChart.draw(data1, options1);
+            potenciaGaugeChart.draw(data2, options2);
+            correnteGaugeChart.draw(data3, options3);
         };
 
         var showStatusFromFieldElement = (current_status) => {
@@ -103,30 +159,7 @@ var SensorDetails = (function () {
                 // Info Image
                 infoDeviceImage.className = "infoDeviceImage sensor";
 
-                drawGauge(tensaoGaugeChart, 'Tensão', entityInfo.Tensao_V, 'tensaoGaugeChart', {
-                  width: 400, height: 120,
-                  min: 0, max: 300,
-                  redFrom: 0, redTo: 150,
-                  yellowFrom:150, yellowTo: 175,
-                  greenFrom: 175, greenTo: 250,
-                  minorTicks: 5
-                });
-                drawGauge(potenciaGaugeChart, 'Potência', entityInfo.Potencia_Ativa_W, 'potenciaGaugeChart', {
-                  width: 400, height: 120,
-                  min: 0, max: 45000,
-                  greenFrom: 0, greenTo: 40000,
-                  yellowFrom: 40000, yellowTo: 42500,
-                  redFrom: 42500, redTo: 45000,
-                  minorTicks: 5
-                });
-                drawGauge(correnteGaugeChart, 'Corrente', entityInfo.Corrente_A, 'correnteGaugeChart', {
-                  width: 400, height: 120,
-                  min: 0, max: 150,
-                  greenFrom: 0, greenTo: 140,
-                  yellowFrom: 140, yellowTo: 145,
-                  redFrom: 145, redTo: 150,
-                  minorTicks: 5
-                });
+                updateGauges(entityInfo.Tensao_V, entityInfo.Pot_Ativa_W, entityInfo.Corrente_A);
                 
                 if(entityInfo.TimeInstant != " ")
                     sensor_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();

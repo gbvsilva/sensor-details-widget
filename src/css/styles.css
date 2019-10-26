@@ -214,25 +214,27 @@ i#deviceIcon.lightIcon {
     background-position: center;
 }
 
-.infoGaugeCharts {
-    width: 400px; 
-    height: 120px;
+.sensor_gaugesBox {
+    display: inline-flex;
 }
 
-/* #tensaoGaugeChart {
-
+#tensaoGaugeChart {
+    width: 100px;
+    height: 100px;
 }
 
 #potenciaGaugeChart {
-
+    width: 100px;
+    height: 100px;
 }
 
 #correnteGaugeChart {
+    width: 100px;
+    height: 100px;
+}
 
-} */
-
-.infoDeviceImage.lighter {
-    background-image: url(../images/LighterImage.png);
+.infoDeviceImage.sensor {
+    background-image: url(../images/sensor.png);
     /*background-image: url(../images/street-light.svg);*/
 }
 

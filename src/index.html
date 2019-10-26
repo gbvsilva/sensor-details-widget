@@ -15,7 +15,7 @@
 
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
-        <script src="lib/js/gcharts_loader.js"></script>
+        <script src="lib/js/google-charts-loader.js"></script>
 
         <title>sensor-details widget</title>
     </head>
@@ -37,13 +37,13 @@
             <div class="mdl-tabs__panel is-active" id="info-panel">
                 <div class="page-content">
                     <section class="sensor-container " id="sensor-info">
+                        <div class="sensor_gaugesBox" id="sensor-gauges">
+                            <div id="tensaoGaugeChart"></div>
+                            <div id="potenciaGaugeChart"></div>
+                            <div id="correnteGaugeChart"></div>
+                        </div>
                         <div id="sensor_mainBox" class="mainBox">
-                            <div class="infoDeviceImage sensor" id="deviceImage_sensor"></div>
-                            <div class="infoGaugeCharts sensor">
-                                <div class="infoGaugeCharts sensor" id="tensaoGaugeChart"></div>
-                                <div class="infoGaugeCharts sensor" id="potenciaGaugeChart"></div>
-                                <div class="infoGaugeCharts sensor" id="correnteGaugeChart"></div>
-                            </div>
+                            <div class="" id="deviceImage_sensor"></div>
                             <div class="basicInfoBox">
                                 <div class="mainInfoBox">
                                     <div class="infoTitle">Última atualização:</div>
@@ -51,6 +51,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </section>
                 </div>
             </div>

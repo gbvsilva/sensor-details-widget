@@ -33,7 +33,7 @@
         <inputendpoint name="status_data" type="text" label="Incoming status data" description="Incoming data with current state of a sensor element" actionlabel="" friendcode="status" />
     </wiring>
 
-    <contents src="index.html" cacheable="true" />
+    <contents src="index.html" />
     <rendering height="300px" width="30%"/>
 
 </widget>
