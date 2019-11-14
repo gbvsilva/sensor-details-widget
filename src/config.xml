@@ -19,6 +19,7 @@
     <requirements>
         <feature name="NGSI"/>
         <feature name="DashboardManagement"/>
+        <feature name="StyledElements"/>
     </requirements>
 
     <preferences>
@@ -33,7 +34,7 @@
         <inputendpoint name="status_data" type="text" label="Incoming status data" description="Incoming data with current state of a sensor element" actionlabel="" friendcode="status" />
     </wiring>
 
-    <contents src="index.html" />
+    <contents src="index.html" cacheable="true" useplatformstyle="false"/>
     <rendering height="300px" width="30%"/>
 
 </widget>
