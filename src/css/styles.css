@@ -214,8 +214,10 @@ i#deviceIcon.lightIcon {
     background-position: center;
 }
 
-.sensor_gaugesBox {
-    display: inline-flex;
+.gaugesBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #tensaoGaugeChart {
