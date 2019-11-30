@@ -25,10 +25,48 @@ var SensorDetails = (function () {
         moment.locale('pt-br');
 
         // Containers
-        var sensor_containers = document.getElementsByClassName("sensor-container");
-        var tabInfo = document.getElementById("info_panel_button");
+        var sensor_containers = document.getElementsByClassName('sensor-container');
+        var sensorESP_containers = document.getElementsByClassName('sensorESP-container');
+        var tabInfo = document.getElementById('info_panel_button');
 
-        // Sensor elements
+        // ESPNPITI Sensor elements
+        var sensorESP_id =  document.getElementById('sensorESP_id');
+        var sensorESP_tipo = document.getElementById('sensorESP_tipo');
+        var sensorESP_correnteA = document.getElementById('sensorESP_correnteA');
+        var sensorESP_correnteB = document.getElementById('sensorESP_correnteB');
+        var sensorESP_correnteC = document.getElementById('sensorESP_correnteC');
+        var sensorESP_correnteTHDA = document.getElementById('sensorESP_correnteTHDA');
+        var sensorESP_correnteTHDB = document.getElementById('sensorESP_correnteTHDB');
+        var sensorESP_correnteTHDC = document.getElementById('sensorESP_correnteTHDC');
+        var sensorESP_potencia_ativaA = document.getElementById('sensorESP_potencia_ativaA');
+        var sensorESP_potencia_ativaB = document.getElementById('sensorESP_potencia_ativaB');
+        var sensorESP_potencia_ativaC = document.getElementById('sensorESP_potencia_ativaC');
+        var sensorESP_potencia_reativaA = document.getElementById('sensorESP_potencia_reativaA');
+        var sensorESP_potencia_reativaB = document.getElementById('sensorESP_potencia_reativaB');
+        var sensorESP_potencia_reativaC = document.getElementById('sensorESP_potencia_reativaC');
+        var sensorESP_potencia_aparenteA = document.getElementById('sensorESP_potencia_aparenteA');
+        var sensorESP_potencia_aparenteB = document.getElementById('sensorESP_potencia_aparenteB');
+        var sensorESP_potencia_aparenteC = document.getElementById('sensorESP_potencia_aparenteC');
+        var sensorESP_fator_potenciaA = document.getElementById('sensorESP_fator_potenciaA');
+        var sensorESP_fator_potenciaB = document.getElementById('sensorESP_fator_potenciaB');
+        var sensorESP_fator_potenciaC = document.getElementById('sensorESP_fator_potenciaC');
+        var sensorESP_periodoA = document.getElementById('sensorESP_periodoA');
+        var sensorESP_periodoB = document.getElementById('sensorESP_periodoB');
+        var sensorESP_periodoC = document.getElementById('sensorESP_periodoC');
+        var sensorESP_voltagemA = document.getElementById('sensorESP_voltagemA');
+        var sensorESP_voltagemB = document.getElementById('sensorESP_voltagemB');
+        var sensorESP_voltagemC = document.getElementById('sensorESP_voltagemC');
+        var sensorESP_voltagemTHDA = document.getElementById('sensorESP_voltagemTHDA');
+        var sensorESP_voltagemTHDB = document.getElementById('sensorESP_voltagemTHDB');
+        var sensorESP_voltagemTHDC = document.getElementById('sensorESP_voltagemTHDC');
+        var sensorESP_anguloAB = document.getElementById('sensorESP_anguloAB');
+        var sensorESP_anguloAC = document.getElementById('sensorESP_anguloAC');
+        var sensorESP_anguloBC = document.getElementById('sensorESP_anguloBC');
+        var sensorESP_latitude = document.getElementById('sensorESP_latitude');
+        var sensorESP_longitude = document.getElementById('sensorESP_longitude');
+
+
+        // Regina Sensor elements
         var infoDeviceImage = document.getElementById('deviceImage_sensor');
         var sensor_id = document.getElementById('sensor_id');
         var sensor_update_date = document.getElementById('sensor_updateDate');
@@ -98,18 +136,6 @@ var SensorDetails = (function () {
             tensaoGaugeChart.draw(data1, options1);
             potenciaGaugeChart.draw(data2, options2);
             correnteGaugeChart.draw(data3, options3);
-            /* setInterval(function() {
-                data1.setValue(0, 1, t);
-                tensaoGaugeChart.draw(data1, options1);
-            }, 1000);
-            setInterval(function() {
-                data2.setValue(0, 1, w);
-                potenciaGaugeChart.draw(data2, options2);
-            }, 1000);
-            setInterval(function() {
-                data3.setValue(0, 1, a);
-                correnteGaugeChart.draw(data3, options3);
-            }, 1000); */
         }
 
         var updateGauges = function updateGauges(t, w, a) {
@@ -170,8 +196,8 @@ var SensorDetails = (function () {
                 sensor_id.innerHTML = entityInfo.id;
                 sensor_tipo.innerHTML = entityInfo.type;
                 sensor_corrente.innerHTML = (parseFloat(entityInfo.Corrente_A)) ? (entityInfo.Corrente_A+" A") : "n/a";
-                sensor_fator_potencia.innerHTML = (parseFloat(entityInfo.Fat_Potencia_VA)) ? (entityInfo.Fat_Potencia_VA+" VA") : "n/a";
-                sensor_fator_potenciaT.innerHTML = (parseFloat(entityInfo.Fat_Potencia_Total_VA)) ? (entityInfo.Fat_Potencia_Total_VA+" VA") : "n/a";
+                sensor_fator_potencia.innerHTML = (parseFloat(entityInfo.Fat_Potencia_VA)) ? (entityInfo.Fat_Potencia_VA+" kVAr") : "n/a";
+                sensor_fator_potenciaT.innerHTML = (parseFloat(entityInfo.Fat_Potencia_Total_VA)) ? (entityInfo.Fat_Potencia_Total_VA+" kVAr") : "n/a";
                 sensor_potencia_aparente.innerHTML = (parseFloat(entityInfo.Pot_Aparente_W)) ? (entityInfo.Pot_Aparente_W+" W") : "n/a";
                 sensor_potencia_aparenteT.innerHTML = (parseFloat(entityInfo.Pot_Aparente_Total_VA)) ? (entityInfo.Pot_Aparente_Total_VA+" WA") : "n/a";
                 sensor_potencia_ativa.innerHTML = (parseFloat(entityInfo.Pot_Ativa_W)) ? (entityInfo.Pot_Ativa_W+" W") : "n/a";
@@ -183,11 +209,53 @@ var SensorDetails = (function () {
                 sensor_longitude.innerHTML = entityInfo.location.coordinates[0]+" &deg";
                 sensor_latitude.innerHTML = entityInfo.location.coordinates[1]+" &deg";
 
-                // Corrente, Pot_Reativa, date_time, potencia, corrente, TimeInstant, Latitud, ,Longitud, , Pot_Aparente, Pot_Ativa
+            } else if (entityInfo.type === "SensorESP") {
+                infoDeviceImage.className = "infoDeviceImage sensor";
+
+                if(entityInfo.TimeInstant != " ")
+                    sensor_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();
+                else
+                    sensor_update_date.innerHTML = "n/a";
+
+                // Details
+                sensorESP_id.innerHTML = entityInfo.id;
+                sensorESP_tipo.innerHTML = entityInfo.type;
+                sensorESP_correnteA.innerHTML = (parseFloat(entityInfo.corrente_a)) ? (entityInfo.corrente_a+" A") : "n/a";
+                sensorESP_correnteB.innerHTML = (parseFloat(entityInfo.corrente_b)) ? (entityInfo.corrente_b+" A") : "n/a";
+                sensorESP_correnteC.innerHTML = (parseFloat(entityInfo.corrente_c)) ? (entityInfo.corrente_c+" A") : "n/a";
+                sensorESP_correnteTHDA.innerHTML = (parseFloat(entityInfo.current_THD_A)) ? (entityInfo.current_THD_A+" A") : "n/a";
+                sensorESP_correnteTHDB.innerHTML = (parseFloat(entityInfo.current_THD_B)) ? (entityInfo.current_THD_B+" A") : "n/a";
+                sensorESP_correnteTHDC.innerHTML = (parseFloat(entityInfo.current_THD_C)) ? (entityInfo.current_THD_C+" A") : "n/a";
+                sensorESP_potencia_ativaA.innerHTML = (parseFloat(entityInfo.power_active_a)) ? (entityInfo.power_active_a+" W") : "n/a";
+                sensorESP_potencia_ativaB.innerHTML = (parseFloat(entityInfo.power_bctive_b)) ? (entityInfo.power_bctive_b+" W") : "n/a";
+                sensorESP_potencia_ativaC.innerHTML = (parseFloat(entityInfo.power_cctive_c)) ? (entityInfo.power_cctive_c+" W") : "n/a";
+                sensorESP_potencia_reativaA.innerHTML = (parseFloat(entityInfo.power_reactive_A)) ? (entityInfo.power_reactive_A+" W") : "n/a";
+                sensorESP_potencia_reativaB.innerHTML = (parseFloat(entityInfo.power_reactive_B)) ? (entityInfo.power_reactive_B+" W") : "n/a";
+                sensorESP_potencia_reativaC.innerHTML = (parseFloat(entityInfo.power_reactive_C)) ? (entityInfo.power_reactive_C+" W") : "n/a";
+                sensorESP_potencia_aparenteA.innerHTML = (parseFloat(entityInfo.power_apparent_A)) ? (entityInfo.power_apparent_A+" W") : "n/a";
+                sensorESP_potencia_aparenteB.innerHTML = (parseFloat(entityInfo.power_bpparent_B)) ? (entityInfo.power_bpparent_B+" W") : "n/a";
+                sensorESP_potencia_aparenteC.innerHTML = (parseFloat(entityInfo.power_cpparent_C)) ? (entityInfo.power_cpparent_C+" W") : "n/a";
+                sensorESP_fator_potenciaA.innerHTML = (parseFloat(entityInfo.power_factor_A)) ? (entityInfo.power_factor_A+" kVAr") : "n/a";
+                sensorESP_fator_potenciaB.innerHTML = (parseFloat(entityInfo.power_factor_B)) ? (entityInfo.power_factor_B+" kVAr") : "n/a";
+                sensorESP_fator_potenciaC.innerHTML = (parseFloat(entityInfo.power_factor_C)) ? (entityInfo.power_factor_C+" kVAr") : "n/a";
+                sensorESP_periodoA.innerHTML = (parseFloat(entityInfo.periodo_A)) ? (entityInfo.periodo_A+" s") : "n/a";
+                sensorESP_periodoB.innerHTML = (parseFloat(entityInfo.periodo_B)) ? (entityInfo.periodo_B+" s") : "n/a";
+                sensorESP_periodoC.innerHTML = (parseFloat(entityInfo.periodo_C)) ? (entityInfo.periodo_C+" s") : "n/a";
+                sensorESP_voltagemA.innerHTML = (parseFloat(entityInfo.voltagem_a)) ? (entityInfo.voltagem_a+" V") : "n/a";
+                sensorESP_voltagemB.innerHTML = (parseFloat(entityInfo.voltagem_b)) ? (entityInfo.voltagem_b+" V") : "n/a";
+                sensorESP_voltagemC.innerHTML = (parseFloat(entityInfo.voltagem_c)) ? (entityInfo.voltagem_c+" V") : "n/a";
+                sensorESP_voltagemTHDA.innerHTML = (parseFloat(entityInfo.voltagem_THD_A)) ? (entityInfo.voltagem_THD_A+" V") : "n/a";
+                sensorESP_voltagemTHDB.innerHTML = (parseFloat(entityInfo.voltagem_THD_B)) ? (entityInfo.voltagem_THD_B+" V") : "n/a";
+                sensorESP_voltagemTHDC.innerHTML = (parseFloat(entityInfo.voltagem_THD_C)) ? (entityInfo.voltagem_THD_C+" V") : "n/a";
+                sensorESP_anguloAB.innerHTML = (parseFloat(entityInfo.angle_a_b)) ? (entityInfo.angle_a_b+" &deg") : "n/a";
+                sensorESP_anguloAC.innerHTML = (parseFloat(entityInfo.angle_a_c)) ? (entityInfo.angle_a_c+" &deg") : "n/a";
+                sensorESP_anguloBC.innerHTML = (parseFloat(entityInfo.angle_b_c)) ? (entityInfo.angle_b_c+" &deg") : "n/a";
+                sensorESP_longitude.innerHTML = entityInfo.location.coordinates[0]+" &deg";
+                sensorESP_latitude.innerHTML = entityInfo.location.coordinates[1]+" &deg";
 
             } else if (entityInfo.type === "Thing") {
                 MashupPlatform.widget.log("Nothing to do with Thing entities!");
-            } else {
+            }else {
                 // Unknown Entity type
                 MashupPlatform.widget.log("unknown entity type: " + entityInfo.type, MashupPlatform.log.WARN);
             }
@@ -248,13 +316,18 @@ var SensorDetails = (function () {
             switch (type) {
             case "Sensor":
                 showAllElements(sensor_containers);
-                /*hideAllElements(cab_containers);
-                hideAllElements(gro_containers);
+                hideAllElements(sensorESP_containers);
+                /*hideAllElements(gro_containers);
                 hideAllElements(par_containers);
                 hideAllElements(was_containers);
                 hideAllElements(lse_containers);*/
                 break;
+            case "SensorESP":
+                hideAllElements(sensor_containers);
+                showAllElements(sensorESP_containers);
+                break;
             }
+            
         };
 
         
