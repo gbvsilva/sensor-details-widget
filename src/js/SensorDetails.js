@@ -66,7 +66,6 @@ var SensorDetails = (function () {
         var sensorESP_latitude = document.getElementById('sensorESP_latitude');
         var sensorESP_longitude = document.getElementById('sensorESP_longitude');
 
-
         // Regina Sensor elements
         var infoDeviceImage = document.getElementById('deviceImage_sensor');
         var sensor_id = document.getElementById('sensor_id');
@@ -86,7 +85,14 @@ var SensorDetails = (function () {
         var sensor_latitude = document.getElementById('sensor_latitude');
         var sensor_longitude = document.getElementById('sensor_longitude');
         
-        var tensaoGaugeChart, potenciaGaugeChart, correnteGaugeChart;
+
+        // ESPNPITI Sensor gauges variables
+        let espTensaoGaugeChart, espPotenciaGaugeChart, espCorrenteGaugeChart;
+
+        // Regina Sensor gauges variables
+        let rTensaoGaugeChart, rPotenciaGaugeChart, rCorrenteGaugeChart;
+        
+        // Generic data and options for the gauges
         var data1, data2, data3;
         var options1, options2, options3;
 
@@ -94,7 +100,9 @@ var SensorDetails = (function () {
         google.charts.setOnLoadCallback(drawGauges);
 
         function drawGauges() {    
-            tensaoGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('tensaoGaugeChart'));
+            rTensaoGaugeChart = new google.visualization.Gauge(document.getElementById('reginaTensaoGaugeChart'));
+            espTensaoGaugeChart = new google.visualization.Gauge(document.getElementById('espTensaoGaugeChart'));
+            
             data1 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Tensão', 0]
@@ -107,7 +115,10 @@ var SensorDetails = (function () {
               greenFrom: 175, greenTo: 250,
               minorTicks: 5
             };
-            potenciaGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('potenciaGaugeChart'));
+            
+            rPotenciaGaugeChart = new google.visualization.Gauge(document.getElementById('reginaPotenciaGaugeChart'));
+            espPotenciaGaugeChart = new google.visualization.Gauge(document.getElementById('espPotenciaGaugeChart'));
+            
             data2 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Potência', 0]
@@ -120,7 +131,10 @@ var SensorDetails = (function () {
               redFrom: 42500, redTo: 45000,
               minorTicks: 5
             };
-            correnteGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('correnteGaugeChart'));
+
+            rCorrenteGaugeChart = new google.visualization.Gauge(document.getElementById('reginaCorrenteGaugeChart'));
+            espCorrenteGaugeChart = new google.visualization.Gauge(document.getElementById('espCorrenteGaugeChart'));
+            
             data3 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Corrente', 0]
@@ -134,18 +148,27 @@ var SensorDetails = (function () {
                 minorTicks: 5
             }
 
-            tensaoGaugeChart.draw(data1, options1);
-            potenciaGaugeChart.draw(data2, options2);
-            correnteGaugeChart.draw(data3, options3);
+            rTensaoGaugeChart.draw(data1, options1);
+            espTensaoGaugeChart.draw(data1, options1);
+            rPotenciaGaugeChart.draw(data2, options2);
+            espPotenciaGaugeChart.draw(data2, options2);
+            rCorrenteGaugeChart.draw(data3, options3);
+            espCorrenteGaugeChart.draw(data3, options3);
         }
 
-        var updateGauges = function updateGauges(t, w, a) {
+        var updateGauges = function updateGauges(t, w, a, entityType) {
             data1.setValue(0, 1, t);
             data2.setValue(0, 1, w);
             data3.setValue(0, 1, a);
-            tensaoGaugeChart.draw(data1, options1);
-            potenciaGaugeChart.draw(data2, options2);
-            correnteGaugeChart.draw(data3, options3);
+            if(entityType === "Sensor") {
+                rTensaoGaugeChart.draw(data1, options1);
+                rPotenciaGaugeChart.draw(data2, options2);
+                rCorrenteGaugeChart.draw(data3, options3);    
+            }else if(entityType === "SensorESP") {
+                espTensaoGaugeChart.draw(data1, options1);
+                espPotenciaGaugeChart.draw(data2, options2);
+                espCorrenteGaugeChart.draw(data3, options3);
+            }
         };
 
         var showStatusFromFieldElement = (current_status) => {
@@ -186,7 +209,7 @@ var SensorDetails = (function () {
                 // Info Image
                 infoDeviceImage.className = "infoDeviceImage sensor";
 
-                updateGauges(entityInfo.Tensao_V, entityInfo.Pot_Ativa_W, entityInfo.Corrente_A);
+                updateGauges(entityInfo.Tensao_V, entityInfo.Pot_Ativa_W, entityInfo.Corrente_A, "Sensor");
                 
                 if(entityInfo.TimeInstant != " ")
                     sensor_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();
@@ -213,7 +236,7 @@ var SensorDetails = (function () {
             } else if (entityInfo.type === "SensorESP") {
                 infoDeviceImage.className = "infoDeviceImage sensorESP";
 
-                updateGauges(entityInfo.voltagem_a, entityInfo.power_active_a, entityInfo.corrente_a);
+                updateGauges(entityInfo.voltagem_a, entityInfo.power_active_a, entityInfo.corrente_a, "SensorESP");
 
                 if(entityInfo.TimeInstant != " ")
                     sensorESP_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();

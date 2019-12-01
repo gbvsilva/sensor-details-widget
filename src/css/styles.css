@@ -220,17 +220,7 @@ i#deviceIcon.lightIcon {
     justify-content: center;
 }
 
-.tensaoGaugeChart {
-    width: 100px;
-    height: 100px;
-}
-
-.potenciaGaugeChart {
-    width: 100px;
-    height: 100px;
-}
-
-.correnteGaugeChart {
+.gaugeChart {
     width: 100px;
     height: 100px;
 }

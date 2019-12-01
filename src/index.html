@@ -36,11 +36,11 @@
             </div>
             <div class="mdl-tabs__panel is-active" id="info-panel">
                 <div class="page-content">
-                    <section class="sensor-container " id="sensor-info">
+                    <section class="sensor-container hidden" id="sensor-info">
                         <div id="sensor-gauges" class="gaugesBox">
-                            <div class="tensaoGaugeChart"></div>
-                            <div class="potenciaGaugeChart"></div>
-                            <div class="correnteGaugeChart"></div>
+                            <div id="reginaTensaoGaugeChart" class="gaugeChart"></div>
+                            <div id="reginaPotenciaGaugeChart" class="gaugeChart"></div>
+                            <div id="reginaCorrenteGaugeChart" class="gaugeChart"></div>
                         </div>
                         <div id="sensor_mainBox" class="mainBox">
                             <div class="infoDeviceImage sensor" id="deviceImage_sensor"></div>
@@ -52,11 +52,11 @@
                             </div>
                         </div>       
                     </section>
-                    <section class="sensorESP-container " id="sensorESP-info">
+                    <section class="sensorESP-container hidden" id="sensorESP-info">
                         <div id="sensorESP-gauges" class="gaugesBox">
-                            <div class="tensaoGaugeChart"></div>
-                            <div class="potenciaGaugeChart"></div>
-                            <div class="correnteGaugeChart"></div>
+                            <div id="espTensaoGaugeChart" class="gaugeChart"></div>
+                            <div id="espPotenciaGaugeChart" class="gaugeChart"></div>
+                            <div id="espCorrenteGaugeChart" class="gaugeChart"></div>
                         </div>
                         <div id="sensorESP_mainBox" class="mainBox">
                             <div class="infoDeviceImage sensorESP" id="deviceImage_sensorESP"></div>
