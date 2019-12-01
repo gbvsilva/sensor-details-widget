@@ -94,7 +94,7 @@ var SensorDetails = (function () {
         google.charts.setOnLoadCallback(drawGauges);
 
         function drawGauges() {    
-            tensaoGaugeChart = new google.visualization.Gauge(document.getElementById('tensaoGaugeChart'));
+            tensaoGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('tensaoGaugeChart'));
             data1 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Tensão', 0]
@@ -107,7 +107,7 @@ var SensorDetails = (function () {
               greenFrom: 175, greenTo: 250,
               minorTicks: 5
             };
-            potenciaGaugeChart = new google.visualization.Gauge(document.getElementById('potenciaGaugeChart'));
+            potenciaGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('potenciaGaugeChart'));
             data2 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Potência', 0]
@@ -120,7 +120,7 @@ var SensorDetails = (function () {
               redFrom: 42500, redTo: 45000,
               minorTicks: 5
             };
-            correnteGaugeChart = new google.visualization.Gauge(document.getElementById('correnteGaugeChart'));
+            correnteGaugeChart = new google.visualization.Gauge(document.getElementsByClassName('correnteGaugeChart'));
             data3 = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Corrente', 0]
