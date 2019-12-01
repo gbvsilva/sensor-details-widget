@@ -30,6 +30,7 @@ var SensorDetails = (function () {
         var tabInfo = document.getElementById('info_panel_button');
 
         // ESPNPITI Sensor elements
+        var sensorESP_update_date = document.getElementById('sensorESP_updateDate');
         var sensorESP_id =  document.getElementById('sensorESP_id');
         var sensorESP_tipo = document.getElementById('sensorESP_tipo');
         var sensorESP_correnteA = document.getElementById('sensorESP_correnteA');
@@ -210,12 +211,14 @@ var SensorDetails = (function () {
                 sensor_latitude.innerHTML = entityInfo.location.coordinates[1]+" &deg";
 
             } else if (entityInfo.type === "SensorESP") {
-                infoDeviceImage.className = "infoDeviceImage sensor";
+                infoDeviceImage.className = "infoDeviceImage sensorESP";
+
+                updateGauges(entityInfo.voltagem_a, entityInfo.power_active_a, entityInfo.corrente_a);
 
                 if(entityInfo.TimeInstant != " ")
-                    sensor_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();
+                    sensorESP_update_date.innerHTML = moment(entityInfo.TimeInstant).subtract(180, 'seconds').fromNow();
                 else
-                    sensor_update_date.innerHTML = "n/a";
+                    sensorESP_update_date.innerHTML = "n/a";
 
                 // Details
                 sensorESP_id.innerHTML = entityInfo.id;

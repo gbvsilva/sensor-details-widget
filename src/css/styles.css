@@ -220,37 +220,27 @@ i#deviceIcon.lightIcon {
     justify-content: center;
 }
 
-#tensaoGaugeChart {
+.tensaoGaugeChart {
     width: 100px;
     height: 100px;
 }
 
-#potenciaGaugeChart {
+.potenciaGaugeChart {
     width: 100px;
     height: 100px;
 }
 
-#correnteGaugeChart {
+.correnteGaugeChart {
     width: 100px;
     height: 100px;
 }
 
 .infoDeviceImage.sensor {
     background-image: url(../images/sensor.png);
-    /*background-image: url(../images/street-light.svg);*/
 }
 
-.infoDeviceImage.group {
-    background-image: url(../images/StreetlightGroup.svg);
-}
-
-.infoDeviceImage.cabinet {
-    background-image: url(../images/cabinet_v3.svg);
-}
-
-.infoDeviceImage.parking {
-    background-image: url(../images/parking-sign.svg);
-    width: 100px;
+.infoDeviceImage.sensorESP {
+    background-image: url(../images/sensorESP.png);
 }
 
 .infoDeviceImage.waste {
@@ -281,6 +271,7 @@ i#deviceIcon.lightIcon {
     height: 200px;
     width: 200px;
 }
+
 .basicInfoBox {
     display: flex;
     flex-flow: column;
