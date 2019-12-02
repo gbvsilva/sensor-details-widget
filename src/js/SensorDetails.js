@@ -30,6 +30,7 @@ var SensorDetails = (function () {
         var tabInfo = document.getElementById('info_panel_button');
 
         // ESPNPITI Sensor elements
+        var espInfoDeviceImage = document.getElementById('deviceImage_sensorESP');
         var sensorESP_update_date = document.getElementById('sensorESP_updateDate');
         var sensorESP_id =  document.getElementById('sensorESP_id');
         var sensorESP_tipo = document.getElementById('sensorESP_tipo');
@@ -63,11 +64,12 @@ var SensorDetails = (function () {
         var sensorESP_anguloAB = document.getElementById('sensorESP_anguloAB');
         var sensorESP_anguloAC = document.getElementById('sensorESP_anguloAC');
         var sensorESP_anguloBC = document.getElementById('sensorESP_anguloBC');
+        var sensorESP_endereco = document.getElementById('sensorESP_endereco');
         var sensorESP_latitude = document.getElementById('sensorESP_latitude');
         var sensorESP_longitude = document.getElementById('sensorESP_longitude');
 
         // Regina Sensor elements
-        var infoDeviceImage = document.getElementById('deviceImage_sensor');
+        var rInfoDeviceImage = document.getElementById('deviceImage_sensor');
         var sensor_id = document.getElementById('sensor_id');
         var sensor_update_date = document.getElementById('sensor_updateDate');
         var sensor_tipo = document.getElementById('sensor_tipo');
@@ -82,6 +84,7 @@ var SensorDetails = (function () {
         var sensor_potencia_reativaT = document.getElementById('sensor_potencia_reativaT');
         var sensor_tensao = document.getElementById('sensor_tensao');
         var sensor_tensaoT = document.getElementById('sensor_tensaoT');
+        var sensor_endereco = document.getElementById('sensor_endereco');
         var sensor_latitude = document.getElementById('sensor_latitude');
         var sensor_longitude = document.getElementById('sensor_longitude');
         
@@ -207,7 +210,10 @@ var SensorDetails = (function () {
             if (entityInfo.type === "Sensor") {
 
                 // Info Image
-                infoDeviceImage.className = "infoDeviceImage sensor";
+                if(entityInfo.id.match(/Regina/g))
+                    rInfoDeviceImage.className = "infoDeviceImage sensor";
+                else
+                    rInfoDeviceImage.className = "infoDeviceImage poi";
 
                 updateGauges(entityInfo.Tensao_V, entityInfo.Pot_Ativa_W, entityInfo.Corrente_A, "Sensor");
                 
@@ -230,11 +236,13 @@ var SensorDetails = (function () {
                 sensor_potencia_reativaT.innerHTML = (parseFloat(entityInfo.Pot_Reativa_Total_VAR)) ? (entityInfo.Pot_Reativa_Total_VAR+" VAR") : "n/a";
                 sensor_tensao.innerHTML = (parseFloat(entityInfo.Tensao_V)) ? (entityInfo.Tensao_V+" V") : "n/a";
                 sensor_tensaoT.innerHTML = (parseFloat(entityInfo.Tensao_Total_V)) ? (entityInfo.Tensao_Total_V+" V") : "n/a";
+                sensor_endereco.innerHTML = entityInfo.endereco.rua+" - "+entityInfo.endereco.bairro+" - "+entityInfo.endereco.cidade+", "+entityInfo.endereco.cep;
                 sensor_longitude.innerHTML = entityInfo.location.coordinates[0]+" &deg";
                 sensor_latitude.innerHTML = entityInfo.location.coordinates[1]+" &deg";
 
             } else if (entityInfo.type === "SensorESP") {
-                infoDeviceImage.className = "infoDeviceImage sensorESP";
+                
+                espInfoDeviceImage.className = "infoDeviceImage sensorESP";
 
                 updateGauges(entityInfo.voltagem_a, entityInfo.power_active_a, entityInfo.corrente_a, "SensorESP");
 
@@ -276,6 +284,7 @@ var SensorDetails = (function () {
                 sensorESP_anguloAB.innerHTML = (parseFloat(entityInfo.angle_a_b)) ? (entityInfo.angle_a_b+" &deg") : "n/a";
                 sensorESP_anguloAC.innerHTML = (parseFloat(entityInfo.angle_a_c)) ? (entityInfo.angle_a_c+" &deg") : "n/a";
                 sensorESP_anguloBC.innerHTML = (parseFloat(entityInfo.angle_b_c)) ? (entityInfo.angle_b_c+" &deg") : "n/a";
+                sensorESP_endereco.innerHTML = entityInfo.endereco.rua+" - "+entityInfo.endereco.bairro+" - "+entityInfo.endereco.cidade+", "+entityInfo.endereco.cep;
                 sensorESP_longitude.innerHTML = entityInfo.location.coordinates[0]+" &deg";
                 sensorESP_latitude.innerHTML = entityInfo.location.coordinates[1]+" &deg";
 

@@ -225,6 +225,10 @@ i#deviceIcon.lightIcon {
     height: 100px;
 }
 
+.infoDeviceImage.poi {
+    background-image: url(../images/poi.png);
+}
+
 .infoDeviceImage.sensor {
     background-image: url(../images/sensor.png);
 }
